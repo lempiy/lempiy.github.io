@@ -1,0 +1,437 @@
+@import url(https://fonts.googleapis.com/css?family=Gochi+Hand);
+body {
+	margin: 0px 0px 0px 0px;
+	background-color: white;
+	font-family: 'Gochi Hand', cursive;
+	min-width:600px;
+}
+.container {
+	width:100%;
+	text-align: center;
+}
+h1, h4 {
+	text-align: center;
+}
+h4 {
+	font-size: 22px;
+}
+.container > h3 {
+	font-size: 14px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.container > h1 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 3px rgba(150, 150, 150, 1);
+}
+.content-box {
+	display: flex;
+	flex-direction:row;
+	justify-content: space-around;
+	align-content: flex-start;
+	box-sizing:border-box;
+	margin: 0px 0px 0px 0px;
+}
+#title {
+	width: 400px;
+	height: 150px;
+	margin: auto;
+	
+}
+#list-box {
+	width: 50%;
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-around;
+	box-sizing:border-box;
+	margin: 0px 0px 0px 0px;
+}
+
+.pok-item {
+	width: 170px;
+	height: 215px;
+	text-align: center;
+  	border-top-left-radius: 50px;
+  	padding: 10px;
+  	border: 4px solid black;
+  	margin: 10px 10px 10px 10px;
+  	background-image: url(https://i.imgsafe.org/94626f5.jpg);
+  	-webkit-animation-name: bounceIn; 
+    animation-name: bounceIn;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s; 
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+.pok-item:hover {
+	box-shadow: 0px 0px 24px 3px rgba(227,227,36,1);
+}
+.img-cont {
+	background-color: #FEF39A;
+	background: linear-gradient(to right,  #F6DC3C, #FEF39A , #F6DC3C);
+	border: 3px solid black;
+	border-top-left-radius: 40px;
+	height: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.text-cont {
+	padding-left: 10px;
+	padding-right: 10px;
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-between;
+}
+.text-cont > h4 {
+	width:100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.pok-type {
+	width: 60px;
+	height: 25px;
+	margin-left:5px;
+	margin-right: 5px;
+	border: 3px solid black;
+	background-color: #D5D5D5;
+	border-radius: 4px;
+	text-align: center;
+	font-size: 18px;
+}
+#description-box {
+	width:50%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap:wrap;
+	align-items:center;
+	box-sizing:border-box;
+	margin: 0px 0px 0px 0px;
+}
+#pokedex {
+	margin-top: 13px;
+	margin-bottom: 13px;
+	width: 390px;
+	height: 550px;
+	background-image: url(http://pre07.deviantart.net/bef9/th/pre/f/2012/183/f/b/dexter_the_pokedex_by_jordentually-d55rfva.jpg);
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#img-wrapper {
+	width:85px;
+	height:85px;
+	margin-top: 80px;
+	float:right;
+	margin-right:60px;
+	background-color: #C0E7C5;
+	border:3px solid black;
+	border-radius: 1000px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#text-wrapper {
+	width:250px;
+	height:270px;
+	border-radius: 20px;
+	background-color: #C0E7C5;
+	border:3px solid black;
+	margin-top: 190px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#text-wrapper h3 {
+	text-align: center;
+	margin:8px 0px 8px 0px;
+}
+.pok-table {
+	border-collapse:collapse;
+	border-spacing:0;
+	width:240px;
+	margin:0px auto;
+}
+.pok-table td {
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	padding:4px 2px;
+	border-style:solid;
+	border-width:1px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	overflow:hidden;
+	word-break:normal;
+}
+.pok-table .table-footer {
+	border-bottom-width: 0px;
+}
+.pok-table .table-value {
+	border-left-width: 1px;
+	width:80px;
+	text-align: center;
+}
+#button-box {
+	width:50%;
+	height: 110px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#load-button {
+	margin-top:10px;
+	width:300px;
+	height: 40px;
+	font-size: 32px;
+	border-radius: 10px;
+	background: #CE1216;
+	border:4px solid black;
+	font-family: 'Gochi Hand', cursive;
+	cursor: pointer;
+
+}
+#load-button:hover {
+	background-color:#D93636;
+	transition: background-color 0.5s;
+
+}
+#load-button:focus {
+	outline: none;
+}
+#load-button:active {
+	background: #CE1216;
+}
+#header-box {
+	margin-left:auto;
+	margin-right: auto;
+	width:300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+}
+#header-box > img {
+	text-align: center;
+	width:200px;
+	height:200px;
+}
+#button-box > img {
+	width: 380px;
+	height: 100px;
+}
+#button-box > h2 {
+	margin: 0px 0px 0px 0px;
+}
+#header-box > button {
+	height: 50px;
+	border:none;
+	background-color:transparent;
+	line-height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+#header-box > button:focus {
+	outline: none;
+}
+#description-box > h2 {
+	text-align: center;
+	margin-left:0px;
+}
+#sort-box > h4 {
+	margin: 0px;
+	margin-bottom: 7px;
+}
+#sort-box > h4 {
+	margin: 0px;
+	margin-bottom: 7px;
+}
+#sort-box > button {
+	margin-right: 5px;
+	margin-left: 5px;
+	width:60px;
+	height:25px;
+	font-family: 'Gochi Hand', cursive;
+	background-color: #0774CA;
+	background: linear-gradient(to bottom, #52B2FE , #0774CA );
+	border: 2px solid #52B2FE;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+}
+#sort-box > button:active {
+	background-color: #52B2FE;
+	background: linear-gradient(to bottom, #0774CA , #52B2FE );
+}
+#sort-box > button:focus {
+	box-shadow: 0px 0px 24px 3px rgba(227,227,36,1);
+	outline: none;
+}
+#bonus-box > h2 {
+	font-size: 50px;
+	letter-spacing: 4px;
+	color: #B40E0E;
+	margin-bottom: 0px;
+}
+#bonus-pokeball {
+	width:150px;
+	height:150px;
+	margin-bottom: 25px;
+	cursor: pointer;	
+}
+#bonus-pokeball:hover {
+	-webkit-animation: shake;
+  	animation: shake 2s infinite;
+}
+canvas {
+	border:3px solid black;
+	box-shadow: 0px 0px 34px 5px rgba(227,50,36,1);
+	margin-bottom: 30px;
+	cursor: pointer;
+}
+
+
+@keyframes bounceIn {
+   0% { 
+      opacity: 1; 
+      transform: scale(.7);
+   }
+   50% { 
+      opacity: 1;
+      transform: scale(1.01);
+   }
+   70% {
+      transform: scale(.9);
+   }
+   100% {
+      transform: scale(1);
+   }
+} 
+
+@keyframes shake {
+  0%,
+  25% {
+    transform: translateX(0);
+  }
+  2.5%,
+  7.5%,
+  12.5%,
+  17.5%,
+  22.5% {
+    transform: translateX(-5px);
+  }
+  5%,
+  10%,
+  15%,
+  20% {
+    transform: translateX(5px);
+  }
+}
+
+
+#button-fire {
+	background-color: #E61923;
+	background: linear-gradient(to bottom, #F46B48 ,#E61923 );
+}
+#button-normal {
+	background-color: #ADADAD;
+	background: linear-gradient(to bottom, #ADADAD , #8A8B89);
+}
+#button-grass {
+	background-color: #3FC035;
+	background: linear-gradient(to bottom, #6FD567 , #3FC035);
+}
+#button-poison {
+	background-color: #DD00EB;
+	background: linear-gradient(to bottom, #F374FB , #DD00EB);
+}
+#button-fighting {
+	background-color: #8C5221;
+	background: linear-gradient(to bottom, #C07230 , #8C5221);
+}
+#button-flying {
+	background-color: #DBDBDB;
+	background: linear-gradient(to bottom, #F5F0EA , #DBDBDB);
+}
+#button-rock {
+	background-color: #99958C;
+	background: linear-gradient(to bottom, #ACA8A0 , #99958C);
+}
+#button-ground {
+	background-color: #4A3017;
+	background: linear-gradient(to bottom, #5C3D1E , #4A3017);
+	color:white;
+}
+#button-bug {
+	background-color: #79BE94;
+	background: linear-gradient(to bottom, #9AD0AF , #79BE94);
+}
+#button-ghost {
+	background-color: #C499C7;
+	background: linear-gradient(to bottom, #D3AFD5 , #C499C7);
+}
+#button-steel {
+	background-color: #708090;
+	background: linear-gradient(to bottom, #8E9CA9 , #708090);
+}
+#button-electric {
+	background-color: #FBEC5D ;
+	background: linear-gradient(to bottom, #FAF294 , #FBEC5D );
+}
+#button-water {
+	background-color: #5ED4E8 ;
+	background: linear-gradient(to bottom, #9FE8F4 , #5ED4E8 );
+}
+#button-ice {
+	background-color: #4682B4 ;
+	background: linear-gradient(to bottom, #7EA7C9 , #4682B4 );
+}
+#button-dragon {
+	background-color: #00DB45 ;
+	background: linear-gradient(to bottom, #42FF7E , #00DB45 );
+}
+#button-dark {
+	background-color: #323041 ;
+	background: linear-gradient(to bottom, #4A465D , #323041 );
+	color:white;
+}
+#button-fairy {
+	background-color: #FF47CA ;
+	background: linear-gradient(to bottom, #F984E5 , #FF47CA );
+}
+#button-unknown {
+	background-color: #E4B4B8 ;
+	background: linear-gradient(to bottom, #EABEC1 , #E4B4B8 );
+}
+#button-shadow {
+	background-color: #BCA2C3 ;
+	background: linear-gradient(to bottom, #CFBAD4 , #BCA2C3 );
+}
+#button-psychic {
+	background-color: #9114C8 ;
+	background: linear-gradient(to bottom, #C133FF , #9114C8 );
+}
+
+@media(max-width:885px) {
+	.content-box {
+		flex-direction:column-reverse;
+		justify-content: center;
+		align-items:center;
+	}
+	#description-box {
+		width: 100%;		
+	}
+	#list-box {
+		width: 100%;		
+	}
+	#button-box {
+		width: 100%;
+	}
+}
+
+
+
