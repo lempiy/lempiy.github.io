@@ -431,5 +431,28 @@ canvas {
 	}
 }
 
+/* Portrait */
+@media screen 
+  and (max-device-width: 600px)
+  and (orientation: portrait) {
+  .content-box {
+		flex-direction:column-reverse;
+		justify-content: center;
+		align-items:center;
+	}
+	#description-box {
+		width: 100%;		
+	}
+	#list-box {
+		width: 100%;		
+	}
+	#button-box {
+		width: 100%;
+	}
+}
+
+
+
+
 
 
