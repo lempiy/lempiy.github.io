@@ -386,10 +386,6 @@ var activeSlot = new ActiveSlot(3);
 	    activeSlot.optimize();
 	}
 
-	Resources.load(
-	        'https://i.imgsafe.org/67ef161.jpg'
-	    );
-
 	window.ctx = ctx;	
 	return {
 	    init: init,
