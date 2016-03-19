@@ -361,6 +361,10 @@ var pokedexView = {
 			window.onresize=function(){
 				pokedexView.optimizeWindowLayout();
 			};
+			$(window).on("orientationchange",function(event){
+				console.log('chenged')
+			  	pokedexView.optimizeWindowLayout();
+			});
 		},
 
 		/*  Main method for pokedex rendering. Takes an pokemon object as argument (from event listner), 
@@ -488,6 +492,11 @@ var pokedexView = {
 
 		controller.pokedexActive();
 		this.optimizeWindowLayout();
+		if(document.body.scrollTop>257) {
+					$('html, body').animate({
+		            	scrollTop: $(this.pokedex).offset().top + 'px'
+		    }, 'medium');
+		}
 		
 		},
 
@@ -500,6 +509,9 @@ var pokedexView = {
 
         /* This is pokedex element layout optimization function.  */ 
         optimizeWindowLayout: function () {
+        	if (window.orientation == 90 || window.orientation == -90) {
+        		return;
+        	}
         	if($(window).width()>885) {
 			var styles = {
 				justifyContent : "center",
@@ -508,17 +520,16 @@ var pokedexView = {
 			$('#description-box').css(styles);
 			pokedexView.pokedexScrolling();
 			} else {
-				if(document.body.scrollTop>257) {
-					$('html, body').animate({
-		            	scrollTop: $(this.pokedex).offset().top + 'px'
-		        	}, 'medium');
-				}
 			}
         },
 
         /* If window width is more than 885px, it changes element style whenever user scrolling inside pokemon list*/
         pokedexScrolling: function(){
-        	if($(window).width()>885) {
+        	if (window.orientation == 90 || window.orientation == -90) {
+        		return;
+        	}
+        	if(window.innerHeight < window.innerWidth&&$(window).width()>885) {
+        		console.log((window).width);
 	        	if(controller.getPokedexState()) {
 					var scrollPos = $(document).scrollTop();
 					var contentBoxTop = $('#list-box').offset().top;
