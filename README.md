@@ -14,4 +14,5 @@ Pokedex allows you to:
 * You will find a secret 'Bonus' section with some additional content.
 
 *You can also contact me via email*: lempiyada@gmail.com
-*You can run app with Git Pages through this link*: http://lempiy.github.io/
+
+_You can run app with Git Pages through this link_: http://lempiy.github.io/
