@@ -450,6 +450,25 @@ canvas {
 		width: 100%;
 	}
 }
+/* Landscape */
+@media screen 
+  and (max-device-width: 600px)
+  and (orientation: landscape) {
+  .content-box {
+		flex-direction:row;
+		justify-content: space-around;
+		align-content: flex-start;
+	}
+	#description-box {
+		width: 50%;		
+	}
+	#list-box {
+		width: 50%;		
+	}
+	#button-box {
+		width: 50%;
+	}
+}
 
 
 
