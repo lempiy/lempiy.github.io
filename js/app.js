@@ -359,11 +359,22 @@ var pokedexView = {
 			this.desriptBox.innerHTML = '<img src="http://d.ibtimes.co.uk/en/full/1366391/twitch-plays-pokemon.gif" width="350" height="350"><h2>Press on pokemon card<br>to get pokedex info</h2>';
 
 			window.onresize=function(){
-				pokedexView.optimizeWindowLayout();
+				if($(window).width()>885)	{
+					pokedexView.optimizeWindowLayout();
+				} else {
+					$(this.pokedex).css("position", "static");
+					$('#description-box').css("align-items", "flex-start");
+				}
 			};
 			$(window).on("orientationchange",function(event){
-				console.log('chenged')
-			  	pokedexView.optimizeWindowLayout();
+			  	if (window.orientation == 90 || window.orientation == -90) {
+			  		console.log('vertical')
+        			$(this.pokedex).css("position", "static");
+					$('#description-box').css("align-items", "flex-start");
+        		}	else {
+        			console.log('horizont')
+        			pokedexView.optimizeWindowLayout();
+        		}
 			});
 		},
 
@@ -526,10 +537,10 @@ var pokedexView = {
         /* If window width is more than 885px, it changes element style whenever user scrolling inside pokemon list*/
         pokedexScrolling: function(){
         	if (window.orientation == 90 || window.orientation == -90) {
+        		console.log('works')
         		return;
         	}
         	if(window.innerHeight < window.innerWidth&&$(window).width()>885) {
-        		console.log((window).width);
 	        	if(controller.getPokedexState()) {
 					var scrollPos = $(document).scrollTop();
 					var contentBoxTop = $('#list-box').offset().top;
