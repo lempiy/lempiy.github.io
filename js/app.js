@@ -358,16 +358,6 @@ var pokedexView = {
 			
 			this.desriptBox.innerHTML = '<img src="http://d.ibtimes.co.uk/en/full/1366391/twitch-plays-pokemon.gif" width="350" height="350"><h2>Press on pokemon card<br>to get pokedex info</h2>';
 
-			$(window).on("orientationchange",function(event){
-				alert("the orientation of the device is now " + screen.orientation.angle);
-			  	if (window.orientation == 90 || window.orientation == -90) {
-        			$(this.pokedex).css("position", "static");
-					$('#description-box').css("align-items", "flex-start");
-        		}	else {
-        			pokedexView.optimizeWindowLayout();
-        		}
-			});
-
 			window.onresize=function(){
 				if($(window).width()>885)	{
 					if($(window).width()>$(window).width())	{
@@ -378,6 +368,17 @@ var pokedexView = {
 					}
 				}
 			};
+			
+			$(window).on("orientationchange",function(event){
+			  	if (screen.orientation.angle == 0) {
+        			$(this.pokedex).css("position", "static");
+					$('#description-box').css("align-items", "flex-start");
+        		}	else {
+        			pokedexView.optimizeWindowLayout();
+        		}
+			});
+
+			
 
 		},
 
