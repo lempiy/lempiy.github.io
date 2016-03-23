@@ -358,24 +358,27 @@ var pokedexView = {
 			
 			this.desriptBox.innerHTML = '<img src="http://d.ibtimes.co.uk/en/full/1366391/twitch-plays-pokemon.gif" width="350" height="350"><h2>Press on pokemon card<br>to get pokedex info</h2>';
 
-			window.onresize=function(){
-				if($(window).width()>885)	{
-					pokedexView.optimizeWindowLayout();
-				} else {
-					$(this.pokedex).css("position", "static");
-					$('#description-box').css("align-items", "flex-start");
-				}
-			};
 			$(window).on("orientationchange",function(event){
+				alert("the orientation of the device is now " + screen.orientation.angle);
 			  	if (window.orientation == 90 || window.orientation == -90) {
-			  		console.log('vertical')
         			$(this.pokedex).css("position", "static");
 					$('#description-box').css("align-items", "flex-start");
         		}	else {
-        			console.log('horizont')
         			pokedexView.optimizeWindowLayout();
         		}
 			});
+
+			window.onresize=function(){
+				if($(window).width()>885)	{
+					if($(window).width()>$(window).width())	{
+						pokedexView.optimizeWindowLayout();
+					} else {
+						$(this.pokedex).css("position", "static");
+						$('#description-box').css("align-items", "flex-start");
+					}
+				}
+			};
+
 		},
 
 		/*  Main method for pokedex rendering. Takes an pokemon object as argument (from event listner), 
@@ -537,7 +540,6 @@ var pokedexView = {
         /* If window width is more than 885px, it changes element style whenever user scrolling inside pokemon list*/
         pokedexScrolling: function(){
         	if (window.orientation == 90 || window.orientation == -90) {
-        		console.log('works')
         		return;
         	}
         	if(window.innerHeight < window.innerWidth&&$(window).width()>885) {
@@ -562,6 +564,8 @@ var pokedexView = {
 						$('#description-box').css("align-items", "flex-end");
 					}
 				}
+			} else if (window.innerHeight > window.innerWidth&&$(window).width()>885) {
+
 			}
 		},
 
