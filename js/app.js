@@ -368,8 +368,9 @@ var pokedexView = {
 					}
 				}
 			};
-			
+
 			$(window).on("orientationchange",function(event){
+				alert(screen.orientation.angle == 0);
 			  	if (screen.orientation.angle == 0) {
         			$(this.pokedex).css("position", "static");
 					$('#description-box').css("align-items", "flex-start");
