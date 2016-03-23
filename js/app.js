@@ -368,16 +368,15 @@ var pokedexView = {
 					}
 				}
 			};
-
-			$(window).on("orientationchange",function(event){
-				alert(screen.orientation.angle == 0);
-			  	if (screen.orientation.angle == 0) {
+			screen.orientation.onchange = function(event){
+				console.log('asdas')
+			  	if (screen.orientation.angle === 0) {
         			$(this.pokedex).css("position", "static");
 					$('#description-box').css("align-items", "flex-start");
         		}	else {
         			pokedexView.optimizeWindowLayout();
         		}
-			});
+			};
 
 			
 
@@ -541,7 +540,7 @@ var pokedexView = {
 
         /* If window width is more than 885px, it changes element style whenever user scrolling inside pokemon list*/
         pokedexScrolling: function(){
-        	if (window.orientation == 90 || window.orientation == -90) {
+        	if (window.orientation === 0) {
         		return;
         	}
         	if(window.innerHeight < window.innerWidth&&$(window).width()>885) {
