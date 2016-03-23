@@ -14,3 +14,5 @@ Pokedex allows you to:
 * You will find a secret 'Bonus' section with some additional content.
 
 *You can also contact me via email*: lempiyada@gmail.com
+
+__You can test run this app by this link:__ lempiy.github.io
