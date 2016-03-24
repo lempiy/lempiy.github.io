@@ -371,7 +371,7 @@ var pokedexView = {
 						pokedexView.optimizeWindowLayout();
 				} else {
 						$(this.pokedex).css("position", "static");
-						$('#description-box').css("align-items", "flex-start");
+						$('#description-box').css("align-items", "center");
 					}
 			};
 
@@ -526,8 +526,7 @@ var pokedexView = {
         	}
         	if($('#description-box').width() === $('.content-box').width()) {
         		$(this.pokedex).css("position", "static");
-				$('#description-box').css("align-items", "flex-start");
-				return;
+				$('#description-box').css("align-items", "center");
         	} else {
 				var styles = {
 					justifyContent : "center",
