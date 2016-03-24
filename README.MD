@@ -15,4 +15,4 @@ Pokedex allows you to:
 
 *You can also contact me via email*: lempiyada@gmail.com
 
-__You can test run this app by this link:__ https://lempiy.github.io
+__You can test run this app by this link:__ http://lempiy.github.io
