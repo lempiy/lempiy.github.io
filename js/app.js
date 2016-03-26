@@ -119,8 +119,8 @@ var controller = {
         	model.addingRequest.complete(function() {
 			 	listView.init();
 			 	listView.addButtonLoadingOff();
-			 	pokedexView.optimizeWindowLayout();
 			 	controller.filterByType();
+			 	pokedexView.optimizeWindowLayout();		 	
 			});
         },
 
