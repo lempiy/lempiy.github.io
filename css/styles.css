@@ -21,7 +21,7 @@ h4 {
 	margin-bottom: 0px;
 }
 .container > h1 {
-	margin-top: 0px;
+	margin-top: -20px;
 	margin-bottom: 0px;
 	letter-spacing: 1px;
 	text-shadow: 0px 0px 3px rgba(150, 150, 150, 1);
@@ -172,6 +172,11 @@ h4 {
 	width:80px;
 	text-align: center;
 }
+#handle-app {
+	margin-top:5px;
+	display: flex;
+	justify-content:center;
+}
 #button-box {
 	width:50%;
 	height: 110px;
@@ -203,9 +208,7 @@ h4 {
 	background: #CE1216;
 }
 #header-box {
-	margin-left:auto;
-	margin-right: auto;
-	width:300px;
+	width:400px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -216,6 +219,7 @@ h4 {
 	width:200px;
 	height:200px;
 }
+
 #button-box > img {
 	width: 380px;
 	height: 100px;
@@ -224,7 +228,8 @@ h4 {
 	margin: 0px 0px 0px 0px;
 }
 #header-box > button {
-	height: 50px;
+	margin-bottom: -10px;
+	height: 40px;
 	border:none;
 	background-color:transparent;
 	line-height: 20px;
@@ -242,12 +247,10 @@ h4 {
 }
 #sort-box > h4 {
 	margin: 0px;
-	margin-bottom: 7px;
+	margin-bottom: 1px;
+	font-size: 17px;
 }
-#sort-box > h4 {
-	margin: 0px;
-	margin-bottom: 7px;
-}
+
 #sort-box > button {
 	margin-right: 5px;
 	margin-left: 5px;
@@ -268,6 +271,53 @@ h4 {
 #sort-box > button:focus {
 	box-shadow: 0px 0px 24px 3px rgba(227,227,36,1);
 	outline: none;
+}
+#filter-box > h4 {
+	margin: 0px;
+	margin-bottom: 1px;
+	font-size: 17px;
+}
+#filter-box > select {
+	width: 140px;
+	height: 25px;
+	background-color: #7FC7FF;
+	border: 2px solid #52B2FE;
+	border-radius: 4px;
+	font-family: 'Gochi Hand', cursive;
+	font-size: 16px;
+}
+#filter-box > select:focus {
+	outline: none;
+}
+#filter-box > select > option {
+	font-family: 'Gochi Hand', cursive;
+	font-size: 16px;
+}
+#selectors-box {
+	margin-right: auto;
+	margin-left: auto;
+	width: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+}
+#selectors-box > button {
+	padding: 10px 0px 0px 0px;
+	width:55px;
+	height:55px;
+	border: none;
+	background: none;
+}
+#selectors-box > button:focus {
+	outline: none;
+}
+#selectors-box > button:hover {
+	opacity: 0.8;
+}
+#selectors-box > button > img {
+	width:50px;
+	height:50px;
 }
 #bonus-box > h2 {
 	font-size: 50px;

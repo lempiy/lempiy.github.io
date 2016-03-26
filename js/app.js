@@ -11,7 +11,7 @@
 
 var model = {
 		/* Making XMLHttpRequest, counting its number. Return saving function to 'close' json info in array, 
-			also initializing awesome audio to make user scared of unexpected sound */
+		declarining data veriables also initializing awesome audio to make user scared of unexpected sound */
 		init: function() {
 			this.numberOfRequests = 1;
 			this.initRequest = $.getJSON('http://pokeapi.co/api/v1/pokemon/?limit=12', function(json) {		
@@ -21,6 +21,27 @@ var model = {
 			this.audio.volume = 0.5;
 			this.audio.loop = true;
 			this.pokedexActived = false;
+			this.pokemonTypes = ['Bug',
+				'Dragon',
+				'Ice',
+				'Fighting',
+				'Fire',
+				'Flying',
+				'Grass',
+				'Ghost',
+				'Ground',
+				'Electric',
+				'Normal',
+				'Poison',
+				'Psychic',
+				'Rock',
+				'Water',
+				'Dark',
+				'Steel',
+				'Shadow',
+				'Fairy',
+				'Unknown'];
+			this.filterSelectors = [];
 		},
 
 		/* Saving function saves all pokemon array and current array - list 12 pokemons that were loaded last */
@@ -62,6 +83,7 @@ var controller = {
 			 	pokedexView.init();
 			 	listView.renderAddButton();
 			 	listView.renderSortBlock();
+			 	listView.renderFilterBlock();
 			 	model.audio.play();
 			 	listView.renderBonusSection();
 			 	pokedexView.scrollHandle();
@@ -98,6 +120,7 @@ var controller = {
 			 	listView.init();
 			 	listView.addButtonLoadingOff();
 			 	pokedexView.optimizeWindowLayout();
+			 	controller.filterByType();
 			});
         },
 
@@ -132,6 +155,59 @@ var controller = {
 	    	}
 		},
 
+		/* Main filter function: copies html collection of cards to array, hiding all elements, 
+		filtering them with .filter() and finally unhiding filtred elements */
+		filterByType: function() {		
+        	var cardsArr = Array.prototype.slice.call(listView.cards, 0);
+        	cardsArr.forEach(function(elm) {
+				listView.hideCard(elm);
+			});
+		    var cardsToUnhide = cardsArr.filter(function(card) {
+		    	if (model.filterSelectors.length===0) {
+		    		return true;
+		    	}
+		    	var pokTypeNodes = card.children[1].children;
+		    	pokTypeNodes = Array.prototype.slice.call(pokTypeNodes, 0);
+		        var pokTypes = [];
+		        for (var i = 1; i < pokTypeNodes.length; i++) {
+		        	pokTypes.push(pokTypeNodes[i].textContent);
+		        }
+		        var hasTypes = false;
+		        var typesСoincidenceCounter = 0;
+		        for (var n = 0; n < pokTypes.length; n++) {
+		        	var index = model.filterSelectors.indexOf(pokTypes[n]);
+		        	if (index >= 0) {
+		        		typesСoincidenceCounter++;
+		        	}		        		
+		        }
+		        if(typesСoincidenceCounter === model.filterSelectors.length) {
+		        	hasTypes = true;
+		        }   
+		        	return hasTypes;	        
+		    });
+		    for (var i = 0; i < cardsToUnhide.length; i++) {
+		        listView.unHideCard(cardsToUnhide[i]);
+	    	}
+	    	pokedexView.optimizeWindowLayout()
+		},
+
+		/* Add filter selector to data if there's no such, start filter process */
+		addFilterSelector: function (value) {
+			listView.resetSelector();
+			var index = model.filterSelectors.indexOf(value.toLowerCase());
+			if (index < 0) {
+				model.filterSelectors.push(value.toLowerCase());
+				listView.renderTypeSelector(value);
+				this.filterByType();
+			}
+		},
+
+		/* Remove filter selector from data, restart filter process */
+		removeFilterSelector: function (value) {
+			var index = model.filterSelectors.indexOf(value.toLowerCase());
+			model.filterSelectors.splice(index, 1);
+			this.filterByType();
+		},
 		/*	This method makes a run connection between click event on pokemon card and pokedex rendering.
 			It gaves a pokedexView.render() a string with name of pokemon we need. Se more in pokedexView
 			section */
@@ -161,6 +237,9 @@ var controller = {
         /* Getter of pokedex state for over View blocks	*/
         getPokedexState: function () {
         	return model.pokedexActived;
+        },
+        getPokemonTypes: function () {
+        	return model.pokemonTypes;
         }
 	}
 
@@ -242,6 +321,7 @@ var listView = {
         /*	Function for adding Audio adjust panel to the header. */
         renderAudioBlock: function () {
         	var headerBox = document.getElementById('header-box');
+        	headerBox.style.width = '180px';
 
         	this.volumeMinusAudio = document.createElement('button');
         	this.switchAudio = document.createElement('button');
@@ -307,10 +387,66 @@ var listView = {
             });
         },
 
-        /* simple function that used in controller.sortByType() method. .appendChild specifics 
+        /* 	Function adding filter panel to the header */ 
+        renderFilterBlock: function () {
+        	var filterBox = document.getElementById('filter-box');
+        	this.selectorsBox = document.getElementById('selectors-box');
+
+        	var filterTitle = document.createElement('h4');
+        	this.filterSelect = document.createElement('select');
+
+        	filterTitle.textContent = 'Filter cards:';
+        	
+        	this.filterSelect.innerHTML = '<option id="default-option" disabled selected value hidden >Add selector</option>'
+        	controller.getPokemonTypes().forEach(function (type) {
+        		var option = document.createElement('option');
+        		option.value = type;
+        		option.textContent = '' + type;
+        		listView.filterSelect.appendChild(option);
+        	});
+
+        	this.filterSelect.onchange = function() {
+        		var value = listView.filterSelect.value;
+        		controller.addFilterSelector(value);
+        	};
+
+        	filterBox.appendChild(filterTitle);
+        	filterBox.appendChild(this.filterSelect);
+        },
+
+         /* Simple function to return initial focus of the <select> html element */
+        resetSelector: function () {
+        	var defaultOption = document.getElementById('default-option');
+        	defaultOption.selected = 'selected';
+        },
+
+        /* In this case we're rendering selectors for filter mechanics */
+        renderTypeSelector: function (typeName) {
+        	var typeSelector = document.createElement('button');
+        	typeSelector.value = typeName;
+        	typeSelector.innerHTML = '<img src="img/' + typeName.toLowerCase() + '.png" alt="' + typeName + '">';
+        	typeSelector.onclick = function()	{
+        		var typeName = this.value;
+        		controller.removeFilterSelector(typeName);
+        		this.parentNode.removeChild(this);
+        	};
+        	this.selectorsBox.appendChild(typeSelector);
+        },
+
+        /* Simple function that used in controller.sortByType() method. .appendChild specifics 
         insures that element would simply replace in the DOM rather then fully rerender */
         sortRendering: function (elm) {
         	this.list.appendChild(elm);
+        },
+
+        /* Function for hidding cards while filter is active */
+        hideCard: function (elm) {
+        	elm.style.display = 'none';
+        },
+
+        /* Function for unhidding cards after disabling filter selectors */
+        unHideCard: function (elm) {
+        	elm.style.display = 'block';
         },
 
         /*	Render section and UI for a super secret bonus */
@@ -356,7 +492,7 @@ var pokedexView = {
 			this.textWrapper = document.createElement('div');
 			this.textWrapper.id='text-wrapper';
 			
-			this.desriptBox.innerHTML = '<img src="http://d.ibtimes.co.uk/en/full/1366391/twitch-plays-pokemon.gif" width="350" height="350"><h2>Press on pokemon card<br>to get pokedex info</h2>';
+			this.desriptBox.innerHTML = '<img src="http://d.ibtimes.co.uk/en/full/1366391/twitch-plays-pokemon.gif" width="350" height="350" style="margin-top:3px;"><h2>Press on pokemon card<br>to get pokedex info</h2>';
 
 			$(window).on("orientationchange",function(event){
 			  	if (screen.orientation.angle == 0) {
@@ -504,12 +640,13 @@ var pokedexView = {
 
 		controller.pokedexActive();
 		this.optimizeWindowLayout();
-		if(document.body.scrollTop>257) {
-					$('html, body').animate({
-		            	scrollTop: $(this.pokedex).offset().top + 'px'
-		    }, 'medium');
-		}
-		
+		if(window.innerHeight > window.innerWidth) {
+			if(document.body.scrollTop>257) {
+						$('html, body').animate({
+			            	scrollTop: $(this.pokedex).offset().top + 'px'
+			    }, 'medium');
+			}
+		}		
 		},
 
 		/*	Simple clear decription box Function*/
@@ -521,33 +658,37 @@ var pokedexView = {
 
         /* This is pokedex element layout optimization function.  */ 
         optimizeWindowLayout: function () {
-        	if (window.orientation == 90 || window.orientation == -90) {
-        		return;
-        	}
-        	if($('#description-box').width() === $('.content-box').width()) {
-        		$(this.pokedex).css("position", "static");
-				$('#description-box').css("align-items", "center");
-        	} else {
-				var styles = {
-					justifyContent : "center",
-					flexDirection: "row",
-				}			
-				$('#description-box').css(styles);
-				pokedexView.pokedexScrolling();
-			};
+        	if(controller.getPokedexState()) {
+	        	if (window.orientation == 90 || window.orientation == -90) {
+	        		return;
+	        	}
+	        	if($('#description-box').width() === $('.content-box').width()) {
+	        		$(this.pokedex).css("position", "static");
+					$('#description-box').css("align-items", "center");
+	        	} else {
+					var styles = {
+						justifyContent : "center",
+						flexDirection: "row",
+					}			
+					$('#description-box').css(styles);
+					pokedexView.pokedexScrolling();
+				};
+			}
 			
         },
 
         /* If window width is more than 885px, it changes element style whenever user scrolling inside pokemon list*/
         pokedexScrolling: function(){
-        	if (window.orientation == 90 || window.orientation == -90) {
-        		return;
-        	}
+
+
         	if(window.innerHeight < window.innerWidth&&$(window).width()>885) {
 	        	if(controller.getPokedexState()) {
 					var scrollPos = $(document).scrollTop();
 					var contentBoxTop = $('#list-box').offset().top;
-					var contentBoxBOt = contentBoxTop + $('#list-box').height() - $(this.pokedex).height();
+					var contentBoxBOt = contentBoxTop + $('#list-box').height() - ($(this.pokedex).height()+26);
+					if($('#list-box').height()<900) {
+						return;
+					}
 					if(scrollPos>contentBoxTop&&scrollPos<contentBoxBOt) {
 						var leftWidth = ($(window).width() / 2) + ($('#description-box').width() / 2 - $(this.pokedex).width() / 2) ;
 						var styles = {
@@ -557,16 +698,14 @@ var pokedexView = {
 						};
 						$(this.pokedex).css(styles);
 						$('#description-box').css("align-items", "flex-start");
-					} else if (scrollPos<contentBoxTop) {
+					} else if (scrollPos<=contentBoxTop) {
 						$(this.pokedex).css("position", "static");
 						$('#description-box').css("align-items", "flex-start");
-					} else {
+					} else if (scrollPos>=contentBoxBOt){
 						$(this.pokedex).css("position", "static");
 						$('#description-box').css("align-items", "flex-end");
 					}
 				}
-			} else if (window.innerHeight > window.innerWidth&&$(window).width()>885) {
-
 			}
 		},
 
@@ -586,7 +725,27 @@ Resources.load([
         'http://www.clker.com/cliparts/u/M/r/x/C/4/pause-icon-th.png',
         'https://media.giphy.com/media/vXa1ndiG1liU0/giphy.gif',
         'http://25.media.tumblr.com/tumblr_m9a6eqNYze1qfqgb9o1_500.gif',
-        'https://i.imgsafe.org/67ef161.jpg'
+        'https://i.imgsafe.org/67ef161.jpg',
+        './img/bug.png',
+        './img/dark.png',
+        './img/dragon.png',
+        './img/electric.png',
+        './img/fairy.png',
+        './img/flying.png',
+        './img/fighting.png',
+        './img/fire.png',
+        './img/ghost.png',
+        './img/grass.png',
+        './img/ground.png',
+        './img/ice.png',
+        './img/normal.png',
+        './img/poison.png',
+        './img/psychic.png',
+        './img/rock.png',
+        './img/steel.png',
+        './img/water.png',
+        './img/shadow.png',
+        './img/unknown.png',
     ]);
 
 /* 	Run application after all resources were loaded */
