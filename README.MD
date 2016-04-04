@@ -16,3 +16,5 @@ Pokedex allows you to:
 *You can also contact me via email*: lempiyada@gmail.com
 
 __You can test run this app by this link:__ http://lempiy.github.io
+
+*If you're interested of my Task #2 implementation follow this link* https://github.com/lempiy/task-2
