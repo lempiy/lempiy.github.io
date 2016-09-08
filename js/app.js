@@ -255,7 +255,7 @@ var listView = {
             this.list = document.getElementById('list-box');
             controller.getCurrentPokemonsList().forEach(function(pokemon){
 	            var newElem = document.createElement('div');
-	            var pokemonImg = 'http://pokeapi.co/media/img/' + pokemon.national_id +'.png';
+	            var pokemonImg = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.national_id +'.png';
 	            newElem.className = "pok-item";
 	            newElem.innerHTML = '<div class="img-cont"><img src=' + pokemonImg + '></div><div class="text-cont"><h4>' + pokemon.name + '</h4></div>';
 	            listView.list.appendChild(newElem);
