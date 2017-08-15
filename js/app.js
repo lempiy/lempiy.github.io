@@ -17,7 +17,7 @@ var model = {
 			this.initRequest = $.getJSON('http://pokeapi.co/api/v1/pokemon/?limit=12', function(json) {		
 					return model.save(json.objects);
 			});
-			this.audio = new Audio('http://vignette3.wikia.nocookie.net/pokemon/images/0/05/Pok%C3%A9mon_Theme_Song_%28Gotta_Catch_%27Em_All%29.ogg/revision/latest?cb=20110719233331');
+			this.audio = new Audio('http://www.televisiontunes.com/song/download/11549');
 			this.audio.volume = 0.5;
 			this.audio.loop = true;
 			this.pokedexActived = false;
@@ -255,7 +255,7 @@ var listView = {
             this.list = document.getElementById('list-box');
             controller.getCurrentPokemonsList().forEach(function(pokemon){
 	            var newElem = document.createElement('div');
-	            var pokemonImg = 'http://pokeapi.co/media/img/' + pokemon.national_id +'.png';
+	            var pokemonImg = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.national_id +'.png';
 	            newElem.className = "pok-item";
 	            newElem.innerHTML = '<div class="img-cont"><img src=' + pokemonImg + '></div><div class="text-cont"><h4>' + pokemon.name + '</h4></div>';
 	            listView.list.appendChild(newElem);
@@ -457,7 +457,7 @@ var listView = {
         	this.pokeballImg = document.createElement('img');
 
         	this.pokeballImg.id = 'bonus-pokeball';
-        	this.pokeballImg.src = 'https://i.imgsafe.org/e4edc67.png';
+        	this.pokeballImg.src = './img/ball.png';
 
         	bonusTitle.innerHTML = '&bull; Bonus &bull;';
         	this.bonusDescr.textContent = 'Click on pokeball';
@@ -718,14 +718,14 @@ var pokedexView = {
 /* 	This is a preload module that caching needed images. This part insures that any graphics in the users screen
 	will run properly and in time */ 
 Resources.load([
-        'https://i.imgsafe.org/94626f5.jpg',
         'http://pre07.deviantart.net/bef9/th/pre/f/2012/183/f/b/dexter_the_pokedex_by_jordentually-d55rfva.jpg',
         'http://d.ibtimes.co.uk/en/full/1366391/twitch-plays-pokemon.gif',
         'http://www.clker.com/cliparts/u/M/r/x/C/4/play-icon-th.png',
         'http://www.clker.com/cliparts/u/M/r/x/C/4/pause-icon-th.png',
         'https://media.giphy.com/media/vXa1ndiG1liU0/giphy.gif',
-        'http://25.media.tumblr.com/tumblr_m9a6eqNYze1qfqgb9o1_500.gif',
-        'https://i.imgsafe.org/67ef161.jpg',
+		'http://25.media.tumblr.com/tumblr_m9a6eqNYze1qfqgb9o1_500.gif',
+		'./img/pok.jpg',
+		'./img/ball.png',
         './img/bug.png',
         './img/dark.png',
         './img/dragon.png',
