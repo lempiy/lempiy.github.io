@@ -47,7 +47,7 @@ var bonus = (function () {
 		this.correctPosition = false;
 		this.optimize();
 		this.speed = 5;
-		this.sprite = 'https://i.imgsafe.org/67ef161.jpg';
+		this.sprite = './img/pok.jpg';
 		this.clicked = false;
 	};
 		
