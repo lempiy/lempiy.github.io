@@ -14,7 +14,7 @@ var model = {
 		declarining data veriables also initializing awesome audio to make user scared of unexpected sound */
 		init: function() {
 			this.numberOfRequests = 1;
-			this.initRequest = $.getJSON('http://pokeapi.co/api/v1/pokemon/?limit=12', function(json) {		
+			this.initRequest = $.getJSON('https://pokeapi.co/api/v1/pokemon/?limit=12', function(json) {		
 					return model.save(json.objects);
 			});
 			this.audio = new Audio('http://www.televisiontunes.com/song/download/11549');
